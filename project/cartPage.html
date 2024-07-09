@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header, .sub-header, .footer {
+            display: flex;
+            font-weight: bold;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #AEB6BF;
+            border-bottom: 1px solid #9fa7b0;
+        }
+        .header {
+            justify-content: center;
+        }
+        .sub-header .left, .sub-header .center, .sub-header .right,
+        .footer .left, .footer .right {
+            flex: 1;
+            text-align: center;
+        }
+        .sub-header .left {
+            text-align: left;
+        }
+        .sub-header .right {
+            text-align: right;
+        }
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .column {
+            flex: row;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .column img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .content {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content img {
+            width: 100%;
+            height: auto;
+        }
+        .buttons {
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #85C1E9;
+            color: white;
+            cursor: pointer;
+        }
+        .buttons:hover {
+            background-color: #6b9bba;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            transform: translateY(-50%);
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #AEB6BF;
+            border-top: 1px solid #7b8189;
+        }
+        .dropdown {
+            position: relative;
+            text-align: left;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropbtn {
+            text-align: left;
+        }
+        a {
+            font-family: Arial, sans-serif;
+            border: none;
+            text-decoration: none;
+        }
+        button {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        @media (min-width: 768px) {
+            .content-wrapper {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .column {
+                margin: 0 10px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .content-wrapper {
+                width: 80%;
+            }
+        }
+        .content .buttons.cart {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .content .buttons.buy {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        /* calculator */
+        .calculator {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        padding: 6px;
+        text-align: center;
+        width: 300px;
+    }
+
+    .calculator input[type="text"] {
+        width: 100%;
+        padding: 0px;
+        margin-top: 10px;
+        height: 30px;
+        margin-bottom: 10px;
+        font-size: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        text-align: right;
+    }
+
+    .calculator button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        margin: 5px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background-color: #f0f0f0;
+        transition: background-color 0.3s ease;
+    }
+
+    .calculator button:hover {
+        background-color: #e0e0e0;
+    }
+
+    .calculator .row {
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>Company</div>
+    </div>
+    <div class="sub-header">
+        <div class="left"><button><a href=""><h4>A/C</h4></a></button></div>
+        <div class="center"><div id="day"></div></div>
+        <div class="right"><button><a href="cartPage.html"><h2>🛒</h2></a></button></div>
+    </div>
+
+    <div class="main">
+        <div class="dropdown">
+            <button class="dropbtn">Filter</button>
+            <div class="dropdown-content">
+                <a href="#">Sports</a>
+                <a href="#">Shoes</a>
+                <a href="#">Utensils</a>
+            </div>
+        </div>
+        <div class="content-wrapper">
+            
+            <div class="content">
+                <div class="slider" id="slider">
+                    <img src="shoe1.jpg" alt="Shoe">
+                </div>
+                <button class="prev">❮</button>
+                <button class="next">❯</button>
+                <button class="buttons cart">Buy All</button>
+                <button class="buttons buy">Buy</button>
+            </div>
+            <div class="column">
+                <div class="calculator">
+                    <input type="text" id="display" disabled>
+                    <div class="row">
+                        <button onclick="addToDisplay('7')">7</button>
+                        <button onclick="addToDisplay('8')">8</button>
+                        <button onclick="addToDisplay('9')">9</button>
+                        <button onclick="addToDisplay('/')">/</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="addToDisplay('4')">4</button>
+                        <button onclick="addToDisplay('5')">5</button>
+                        <button onclick="addToDisplay('6')">6</button>
+                        <button onclick="addToDisplay('*')">*</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="addToDisplay('1')">1</button>
+                        <button onclick="addToDisplay('2')">2</button>
+                        <button onclick="addToDisplay('3')">3</button>
+                        <button onclick="addToDisplay('-')">-</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="addToDisplay('0')">0</button>
+                        <button onclick="addToDisplay('.')">.</button>
+                        <button onclick="clearDisplay()">C</button>
+                        <button onclick="addToDisplay('+')">+</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="calculate()">=</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="left">Time<div id="clock"></div></div>
+        <div class="right">Date<div id="date"></div></div>
+    </div>
+
+    <script>
+        // calculator
+        function addToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+        let result = eval(document.getElementById('display').value);
+        document.getElementById('display').value = result;
+    }
+    //clock and day
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        function updateDate() {
+            const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            const dateString = `${day}/${month}/${year}`;
+            document.getElementById('date').textContent = dateString;
+        }
+
+        updateDate();
+
+        function updateDay() {
+            const now = new Date();
+            const daysOfWeek = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+            const dayString = daysOfWeek[now.getDay()];
+            document.getElementById('day').textContent = dayString;
+        }
+
+        updateDay();
+    </script>
+</body>
+</html>

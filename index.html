@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            transition: background-color 0.5s;
+        }
+    </style>
+    <script>
+        function changeBackgroundColor(color){
+            document.body.style.backgroundColor = color;
+        }
+        function changeButtonColor(color)
+        {
+            var buttons = document.getElementsByTagName("button");
+            for (var i = 0; i < buttons.length; i++) 
+            {
+                buttons[i].style.backgroundColor = color;
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="changeBackgroundColor('blue')">light mode</button>
+    <p>this is buttons</p>
+    <button onclick="changeBackgroundColor('green')">dark mode</button><br><br>
+    <button onclick="changeButtonColor('red')">Button color</button>
+</body>
+
+</html>
